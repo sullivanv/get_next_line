@@ -6,7 +6,7 @@
 /*   By: suvitiel <suvitiel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/07 17:28:38 by suvitiel          #+#    #+#             */
-/*   Updated: 2017/02/07 18:56:57 by suvitiel         ###   ########.fr       */
+/*   Updated: 2017/02/07 19:02:05 by suvitiel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ static int ft_read(const int fd, char **line)
 	char *tmp;
 
 	tmp = NULL;
-	while (ret = read(fd, buf, BUFF_SIZE) > 0)
+	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
-		buf[ret] = NULL;
+		buf[ret] = '\0';
 		tmp = *line;
 		*line = ft_strjoin(*line, buf);
 		free(tmp);

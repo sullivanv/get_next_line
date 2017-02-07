@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suvitiel <suvitiel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/07 17:29:01 by suvitiel          #+#    #+#             */
-/*   Updated: 2017/02/07 19:05:23 by suvitiel         ###   ########.fr       */
+/*   Created: 2016/11/28 23:04:56 by suvitiel          #+#    #+#             */
+/*   Updated: 2017/01/10 07:12:00 by suvitiel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# define BUFF_SIZE 32
+char *ft_strtrim(char const *s)
+{
+	int i;
+	int index;
+	int len;
 
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include "libft/libft.h"
-
-int get_next_line(const int fd, char **line);
-
-#endif
+	i = 0;
+	if (s == NULL)
+		return (NULL);
+	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
+		i++;
+	index = i;
+	while (s[i])
+		i++;
+	len = i;
+	while ((s[i - 1] == ' ' || s[i - 1] == '\n' || s[i - 1] == '\t'))
+		i--;
+	if (i == 0)
+		return (ft_strsub("\0", 1, 1));
+	return (ft_strsub(s, index, i - index));
+}
